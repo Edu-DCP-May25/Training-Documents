@@ -1,0 +1,153 @@
+		
+#######################
+Day 1 - 25th May 2024
+#######################	
+	
+	Version Control System using GIT ::::
+	
+		Version Control System - VCS :
+		
+			- Is used to Version Control the Source Code Changes
+			- It is used to Track the Changes
+			
+		Java web application :
+
+			user_registration.html
+			
+			<html>
+			---
+			-
+			-
+			-
+			-
+			-
+			-
+			-
+			</html>
+			
+			save as user_registration.html
+			
+			test the changes
+
+			<html>
+			---
+			-
+			-
+			-
+			-asfasdfasdf
+			-asdfasdf
+			-asdfasd
+			-asdfasd
+			asdfasdfasdf
+			asdfs
+			</html>
+		
+			save as user_registration.html
+			
+			test the changes	
+
+			Version Control System like GIT :
+
+			<html>
+			---
+			-
+			-
+			-
+			-
+			-
+			-
+			-
+			</html>
+			
+			save as user_registration.html_v1.0		# Version Number/Tag/Commit_ID		
+			save as user_registration.html_v1.1		# Version Number/Tag/Commit_ID		
+			save as user_registration.html_v1.2		# Version Number/Tag/Commit_ID		
+			save as user_registration.html_v1.3		# Version Number/Tag/Commit_ID		
+			save as user_registration.html_v1.4		# Version Number/Tag/Commit_ID		
+		
+		Types of Version Control System ::
+		
+			- Local VCS 
+			
+			- Centralized VCS 
+			
+			- Distributed VCS
+			
+			
+		GIT :
+		
+			- It is a Open Source Distributed VCS 
+			- Used to version control and track the source code Changes 
+			- It helps perform Parallel Development using Branching Techniques			
+			
+		Distributed VCS :
+		
+		GIT file Workflow :
+			
+		Local Machine 																Remote Server
+		
+			Install GIT Client in Local Machine 										github
+		
+		git 	- git client in local machine
+		
+		github  - remote git server 
+		az Repo 
+		aws codecommit
+		bitbucket
+		gitlab 
+		
+		GIT file Workflow : 60%
+			
+		Local Machine 																			 Remote Server
+		
+		Working Directory				Staging Area 			  Local Repository				 Remote Repository
+		
+		payment.java		--------> 	payment.java  -------->	  payment.java_v1.0	  -------->	 payment.java_v1.0
+							git add                   git commit                      git push
+		payment.java		--------> 	payment.java  -------->	  payment.java_v1.1	  -------->	 payment.java_v1.1
+							git add                   git commit                      git push
+		payment.java		--------> 	payment.java  -------->	  payment.java_v1.2	  -------->	 payment.java_v1.2
+							git add                   git commit                      git push
+		
+		
+		Developers Workload ::
+		
+			- Enhancement / Bugfixing 
+			
+			- New Project
+			
+			
+		git clone 			---> 	It is used to clone/copy the entire remote repository to local machine
+		
+		git add 			---> 	It is used to add the changes from working directory to staging area 
+		
+		git commit			--->	It is used to permanently commit the changes from staging area to Local Repository
+		
+		git push 			---> 	It is used to push the changes from local repository to remote repository
+		
+		git pull / fetch :::
+			
+				---> Both git pull and git fetch commands are used to handle incremental changes.
+				
+				git fetch :
+					It is just used to check for the incremental changes. If there is any incremental changes exist, it will update the details in the Local Repository. But, it will NEVER update in the working directory.
+					
+				git pull :
+					It is used to check for the incremental changes. If there is any incremental changes exist, it will update the repository in the Local Repository as well as in the working directory.
+					
+					If you wish to keep the changes on local repository in-sync with remote repository we use git pull.
+					Before any push event, it is recommended to use git pull.
+					
+					git pull = git fetch + git merge 
+					
+					
+		Working with GIT :::
+		
+		
+			- Install git client in local machine.		https://git-scm.com/downloads
+					On Windows OS - git bash/cmd/gui
+				
+			- Create an account in github  				https://github.com/
+					
+					
+			
