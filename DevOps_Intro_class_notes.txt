@@ -1,0 +1,285 @@
+##############
+
+DCP Orientation - 18th May. 2024
+
+
+
+#######################
+Day 1 - 25th May 2024
+#######################
+
+Overview of DevOps :
+
+	What is DevOps ????
+	
+	Software Applications :
+	
+		- Desktop Applications
+		
+		- Web Applications
+		
+		- Mobile Applications
+		
+		- System Applications
+		
+		- Embedded Applications
+	
+	SDLC - Software Development Lifecycle :
+
+		- Requirement Analysis Phase
+		
+		- Documentation / Design Phase 
+		
+		- coding / Development
+		
+		- Testing 
+		
+		- Implemented to Production
+		
+		- Monitor / Maintain
+		
+			- Desktop Applications 
+		
+				- Billing System for a Super Market
+			
+
+		Waterfall Model :
+		
+			- It is Linear in fashion 
+			- Top-Down Approach
+			- Using Monolith Application Architecture
+			
+			- Billing System for a Super Market
+			
+				Functions / Modules :
+					- Create User Interface 
+					- Inventory Management 
+					- Payment	- CASH Payment  + Card Payment
+					- Billing 
+					- Orders				
+	
+			- Requirement Analysis Phase		==> 	9 Months (4th month)			
+			- Documentation / Design Phase 			
+			- coding / Development			
+			- Testing 			
+			- Implemented to Production			
+			- Monitor / Maintain	
+			
+		
+		AGILE Methodologies ::: Task based approach 
+
+				Functions / Modules :   # Iterations 
+					- Create User Interface 
+					- Inventory Management 
+					- Payment	- CASH Payment  + Card Payment
+					- Billing 
+					- Orders		
+		
+			Iterations 1 : Create User Interface
+				- Requirement Analysis Phase				
+				- Documentation / Design Phase 			
+				- coding / Development			
+				- Testing 			
+				- Implemented for further Testing and manual Production release			
+				- Monitor / Maintain
+
+			Iterations 2 : Inventory Management 
+				- Requirement Analysis Phase				
+				- Documentation / Design Phase 			
+				- coding / Development			
+				- Testing 			
+				- Implemented for further Testing and manual Production release			
+				- Monitor / Maintain
+
+			Iterations 3 : Payment
+				- Requirement Analysis Phase				
+				- Documentation / Design Phase 			
+				- coding / Development			
+				- Testing 			
+				- Implemented for further Testing and manual Production release			
+				- Monitor / Maintain
+
+			Iterations nth : Enhancement
+				- Requirement Analysis Phase				
+				- Documentation / Design Phase 			
+				- coding / Development			
+				- Testing 			
+				- Implemented for further Testing and manual Production release			
+				- Monitor / Maintain
+				
+			Using AGILE Methodologies :
+			
+				- we can achieve :
+				
+					Continuous Development
+					Continuous Integration
+					Continuous Testing 
+					Continuous Delivery 
+						- Expects the manual intervension/Approvals for Production Release
+					
+				- We cannot Achieve :
+				
+					Continuous Deployment 
+						- Doesn't the manual intervension/Approvals for Production Release
+						- This allows completely automated prod deployments without downtime
+						
+		DevOps ::
+		
+			DevOps is a Software Development Strategy, which helps to promote the collaboration between the teams Development Teams and Operations Teams to achieve Continuous Development, Continuous Integration, Continuous Testing, Continuous Delivery, Continuous Deployment and Continuous Monitoring in more automated fashion.
+			
+		How to Implement DevOps :::
+		
+			Teams :
+			
+				DevOps Team: 
+					Infra-Structure Management Team - Provision/Configure Infra-Structure
+					Application Development Team
+					Testing Team 
+					Release Management Team 
+					Production Support Team 
+					Production Monitoring Team 
+					Security Administration Team 
+					
+			Environments :::
+			
+				Non - Prod Environments									Prod Environments
+				
+					Dev 
+					Build 
+					Test 
+						QA - Quality Assurance Testing 
+						UAT - User Acceptance Testing   	=========>		Production 
+						
+			
+						
+			DevOps Stages :::	
+			
+				Continuous Development :
+				
+					- It is the capability of the Development Team to continuously Develop the code and improve the developers productivity.
+					
+					Developers' Role ::
+						- Coding - Develop Business logics 
+						- Build the Code 
+									--> Is a process of compiling the code and create artifacts(Binaries - *.war/*.jar/*.dll/*.exec)
+						- Unit Testing 
+						- Promote the changes to Test Environments
+						- Notify the Testing Team thru Emails 
+						
+					DevOps Approach :
+					
+						- Create Source Code 
+						- Save/Commit the Source Code to a Source Code Repository(github)
+						
+						Automate using DevOps Tool :
+						
+						- Build the Code 
+									--> Is a process of compiling the code and create artifacts(Binaries - *.war/*.jar/*.dll/*.exec)
+						- Unit Testing 
+						- Promote the changes to Test Environments
+						- Notify the Testing Team thru Emails 	
+
+					Tool :
+					
+						- Eclipse based IDEs - Integrated Development Environment
+								- Eclipse IDE, Visual Studio, Visual Studio Code, Pycharm
+						
+						- Build Tools - Maven 
+						- Unit Testing Tools - Junit 
+						
+				
+				Continuous Integration :
+					- It is the capability of the Development Team to continuously Integrate their Code Changes for further testing environments without impacting others' changes.
+				
+					Tools :
+						- Eclipse based IDEs - Integrated Development Environment
+								- Eclipse IDE, Visual Studio, Visual Studio Code, Pycharm						
+						- Build Tools - Maven 
+						- Unit Testing Tools - Junit 
+						- GITHUB, Jenkins, Docker, Kubernetes
+				
+				Continuous Testing :
+					- It is process of enabling the continuous testing using the changes integrated by the developers.
+					- Create Test Cases/Test Data / Scenarios 
+					
+					Tools :
+					
+						- Junit / TestNG / Selenium 						
+						- Jenkins 
+				
+				Continuous Delivery / Deployment :
+				
+					- Both Continuous Delivery and Continuous Deployment are used to perform Production Releases.
+					
+					Continuous Delivery 
+						- Expects the manual intervension/Approvals for Production Release
+						- This might lead to Application Downtime
+							
+					Continuous Deployment 
+						- Doesn't the manual intervension/Approvals for Production Release
+						- This allows completely automated prod deployments without downtime
+						- Achieve Zero Downtime 
+						
+						This can be achieved only with the Micro-Service Based Application Architecture
+						
+						Types of Application Architecture ::
+							- Monolith Application Architecture
+								- Tightly Coupled Application Architecture
+								- Dependencies are tightly coupled, which prevent independent coding/testing/release
+							
+							- Micro-Service Based Application Architecture
+								- Loosely Coupled Application Architecture
+								- Each in an Application is considered as a Micro-Service.
+								- These Micro-Services are independently Developed, Tested, and Implemented to Production.
+						
+					Tools :
+						
+						- Jenkins, Docker, Kubernetes, Ansible
+						
+				
+				Continuous Monitoring :
+					
+					This to monitor the Production Environments and Applications running in Production Environments.
+					
+					Infra-Structure Monitoring
+						Tools - Prometheus/Grafana/Nagios/Splunk/Dynatrace 
+						CPU/Memory Utilization 
+						
+					Application Monitoring 
+						Tools - AppDynamics / DataDog 
+						Applications Response time and performance
+					
+					
+				Infra-Structure Management Team :
+				
+					IAC Tools - Infra-Structure As Code.
+
+					Provisioning/Creating the Infra-Structure						
+						Tools --> Terraform/ARM
+					
+					Configure the Infra-Structure				
+						Tools --> Ansible/Chef/Puppet
+				
+		DevOps Lifecycle :::	 CI/CD Pipeline	
+			
+			Requirement Analysis 
+			Design
+			Code 
+			Commit the code to Source Code Repository (GITHUB)
+			BUILD 
+			Automated Unit Testing 
+			Promote to QA Environment
+			Perform QA Testing 
+			Promote to UAT Environment
+			Perform UAT Testing 
+			Promote to Prod Environment
+			Prod Level Testing 
+			Monitor Application/Infra-Structure
+			
+		Scripting Knowledge :
+		
+			shell/groovy/YAML/Python Language 
+			
+		Waterfall,AGILE,DevOps,DevSecOps,SRE,GitOps,AIOps,MLOps
+		
+		
