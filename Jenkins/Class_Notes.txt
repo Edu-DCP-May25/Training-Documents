@@ -1,0 +1,251 @@
+					
+######################
+Day 4 - 2nd June 2024
+######################
+
+	Automate using DevOps Tool :
+	
+	- Build the Code 
+				--> Is a process of compiling the code and create artifacts(Binaries - *.war/*.jar/*.dll/*.exec)
+	- Unit Testing 
+	- Promote the changes to Test Environments
+	- Notify the Testing Team thru Emails
+	
+	Build Orchestration using Jenkins  :
+	
+		- Is an open-source Build Orchestration Tool to automate CI and CD.
+		
+		- It is based on Master - Slave Architecture
+		
+			Jenkins_Master Node 	(VM)
+			
+				Jenkins_Slave Nodes (VM)
+				
+		- Jenkins Architecture
+		
+		- Roles and Responsibilities
+		
+		
+		Lab : AWS Cloud Platform :::
+		
+			- Create a free-tier Account on AWS Cloud Platform	
+				- 12 Months 						# https://aws.amazon.com/console/
+					- Active Email_ID and Mobile Number
+					- Active Credit/Debit Card - Authentication
+					
+			- Create EC2 Instances (Virtual Machine) 
+			
+			- Connection to EC2 Instances 
+			
+				SSH Connection :
+					EC2 Instance Connect (Thru. web browser) 
+					SSH Agents 
+						- MobaXterm					# https://mobaxterm.mobatek.net/download.html
+						
+							Host_Name 
+							User_Name 
+							Credential 
+							
+						- Putty
+						
+					Terminal 
+			
+			- Visual Studio Code - IDE				# https://code.visualstudio.com/download 
+					
+		Environments
+		
+			- DEV	(VM) 
+			- Builds
+			- QA 
+			- UAT 
+			- PROD
+			
+		Jenkins Architecture ::::
+		
+			Jenkins_Master Node 	(VM)	--> Install Jenkins : jdk
+											--> Used to Create the Jenkins Jobs/Projects and schedule it to run in slave Nodes
+											--> git, Build Tools - java,.net,python,nodejs,angular,ruby
+			
+				Jenkins_Slave Nodes (VM)	--> git, Build Tools 
+											--> Used to run the build Jobs to Build the Application Artifacts							
+		
+		
+			Jenkins_Master Node 	(VM)
+			
+				Jenkins_Slave Node1 (VM)	--> Java Application  - jdk, maven, 
+				Jenkins_Slave Node2 (VM)	--> Python Application
+				Jenkins_Slave Node3 (VM)	--> NodeJS Application
+				Jenkins_Slave Node4 (VM)	--> .Net Application
+				Jenkins_Slave Node5 (VM)	--> Angular Application				
+				
+		Jenkins ::
+		
+			Developers' Perspective :
+				- Consumers
+			
+			
+			DevOps Perspective :	
+			
+				- Administration
+				
+				Roles and Responsibilities of DevOps Team :
+				
+				- Jenkins Servers and tools are owned by DevOps Team
+				
+				- Installation and Configuration of Jenkins 
+				- Plugins Management
+				- Tools Management
+				- User Management
+				- Security Management
+				- Credential Management
+				- Jenkins Global System Management
+				- Create CICD Pipeline Projects to automate builds and deployments 
+				- Onboard the Applications to devOps automation
+				- Trouble-shooting Issues 
+				- Periodic Upgrade of Jenkins and Plugins 
+				- Back-up & Recovery
+				
+		Jenkins using Groovy Scripts to do process Automation.
+		
+		
+		- Installation and Configuration of Jenkins :::
+		
+			Launch VM - EC2 Instances --> 
+			
+				VM - OS - Linux/Windows/Mac 
+					- Linux Distribution :::
+					
+						- Debian/Ubuntu		- apt-get / apt 
+						- Fedora 			- dnf 
+						- RHEL / Centos 	- yum 
+						- Amazon Linux 		- dnf						
+						
+					Package(Tools) Manager  -- Used to Manage(Installation/Uninstallation/Upgrade) the packages 
+					
+					Jenkins Plugins 		-- This is based on Jenkins 
+					
+		- https://www.jenkins.io/doc/book/installing/linux/
+		
+			- Pre-requisites	
+				- Launch Ubuntu AMI - v22.04
+				- Jenkins run in default port 8080
+				- jdk 
+				
+			- Install the actual package 
+				- jenkins
+			
+			- Post-Installation Activities
+				- start jenkins and enable it
+				
+		
+		Launch VM - EC2 Instances --> 
+		
+			- Ubuntu AMI - v22.04
+			
+			
+			1 VM 	==> 750 Hrs/Month
+				
+			10 VMs	==> 75 Hrs/Month 
+			
+			
+		On-premises Environments 
+		-- Cloud 
+		
+		DevOps 
+		
+		Linux Administration Batch : Linux 
+		
+		Install Hyperviser in local Machine & Create Linux VMs
+		
+		SSH - port 22 connect to any remote servers 
+		
+		SSH Agent 
+			- MobaXterm 
+		
+		12 - 15 VMs  --> AWS 
+			server 
+			storage		- 500TB + 500
+			network
+			OS
+			System components 
+			
+		
+Installation of Jenkins :::
+
+# Install JDK :
+
+sudo apt update -y
+sudo apt install fontconfig openjdk-17-jre -y
+java -version			
+		
+		
+# Install Jenkins :
+					
+sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+  
+echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
+  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+
+sudo apt-get update -y
+
+sudo apt-get install jenkins -y
+
+jenkins --version 
+
+runs as a service in port 8080
+
+<external_ip_addr>:8080
+
+35.154.137.92:8080
+		
+				
+			
+
+				- Plugins Management
+				- Tools Management
+				- User Management
+				- Security Management
+				- Credential Management
+				- Jenkins Global System Management
+		
+
+	Create Jenkins Jobs/Projects :
+	
+		- Free-Style Project - Manual Config. 
+		
+		
+		- Pipeline Project	 - Created using Groovy Script
+		
+			Scripted Pipelines 		--> 	typical groovy scripts
+			
+			Declarative Pipelines	-->		Pipeline Snippet Generator 	
+			
+			
+			
+			Variables ::
+			
+				- Environment Variables
+				
+					- echo "jenkins-${JOB_NAME}-${BUILD_NUMBER}"
+						"${var1}"
+						
+						
+				- User Defined Variables 
+			
+	
+
+	Declarative ::
+	gitlab-ci
+	az-pipeline
+	bamboo
+		
+	
+		
+				
+												
+			
+		
+		
+		
