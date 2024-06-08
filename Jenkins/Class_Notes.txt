@@ -241,7 +241,204 @@ runs as a service in port 8080
 	az-pipeline
 	bamboo
 		
+######################
+Day 5 - 8th June 2024
+######################
+
+
+	Jenkins :
 	
+		- Create Project 
+				Free-Style Project - Manual Config. 
+				Variables ::
+			
+				- Environment Variables
+				
+					- echo "jenkins-${JOB_NAME}-${BUILD_NUMBER}"
+						"${var1}"
+						
+						
+				- User Defined Variables 
+				
+					Deployment Job
+
+						Deploy the artifacts to target environments			50 Environments ?
+							1 Job with parameter qa, uat
+						
+						a = 5 ;
+				
+
+		- Pipeline Project	 - Created using Groovy Script
+		
+			Scripted Pipelines 		--> 	typical groovy scripts
+			
+			Declarative Pipelines	-->		Pipeline Snippet Generator 
+
+
+				Pipelines are composed of various Stages :::
+
+					DevOps Approach :
+					
+						- Create Source Code 
+						- Save/Commit the Source Code to a Source Code Repository(github)
+						
+						Automate using DevOps Tool :
+						
+						- Identify the src_code
+						- Build the Code 
+									--> Is a process of compiling the code and create artifacts(Binaries - *.war/*.jar/*.dll/*.exec)
+						- Unit Testing 
+						- Promote the changes to Test Environments
+						- Notify the Testing Team thru Emails				
+					
+
+Declarative Pipeline :::
+				
+pipeline {
+    agent any
+
+    stages {
+        stage('SCM_Checkout') {
+            steps {
+                echo 'Perform SCM Checkout'
+            }
+        }
+        stage('Application Build') {
+            steps {
+                echo 'Perform Application Build'
+            }
+        }
+        stage('Deploy to Target Environment ') {
+            steps {
+                echo 'Perform Deployment'
+            }
+        }
+    }
+}
+				
+Maven Build Tool ::		
+
+	It is used to build the java maven project 
+	
+	It composed two items :
+	
+		- Maven : pom.xml 
+					- It is used to define the properties of the application artifact, dependencies and the plugins required to build the application.
+					- Will be maintained by Developers in Source code repositories.
+		
+		- Maven : Goals
+					- Define the objective of Maven 
+					
+						- compile 	- It just compile the code and check the compilation errors.
+						- test		- It will compile the code and perform unit testing	
+						- package	- It is used to compile, test and create artifacts in target folder  
+						- clean		- It is used to clean the target folder 
+	
+
+					mvn clean package
+
+
+		- Jenkins Master Node and Slave Node Configuration :::
+		
+					Purpose ?
+					Tools to be installed?
+			
+			
+			Jenkins_Master (VM)				Purpose	: Used to Create the Jenkins Jobs/Projects and schedule it to run in slave Nodes
+											Tools 	: git, jdk, jenkins
+											
+				Jenkin_Slave (VM)			Purpose : Java Application Build and create artifacts
+											Tools 	: git, jdk, maven 
+			
+
+			SSH COnnection 
+				- Host Name 
+				- User Name 
+				- User Credentials 
+					- password 
+					- token 
+					- key based authentication
+
+
+Schedule the pipeline job to run in slave node :::
+
+pipeline {
+    agent { label 'may25slave1' }
+
+    stages {
+        stage('SCM_Checkout') {
+            steps {
+                echo 'Perform SCM Checkout'
+				git 'https://github.com/Edu-DCP-May25/java-mvn-springbootapp1.git'				
+            }
+        }
+        stage('Application Build') {
+            steps {
+                echo 'Perform Application Build'
+				sh 'mvn clean package'
+            }
+        }
+        stage('Deploy to Target Environment ') {
+            steps {
+                echo 'Perform Deployment'
+            }
+        }
+    }
+}
+
+
+Setup the Target Server using Tomcat ::: default port 8080
+
+	Target/Hosted server
+
+		- Install Web Application Server		
+		
+			Tomcat,Nginx,Apache httpd
+
+			
+	Jenkins_Master (VM)			-- git,jdk,jenkins
+		Jenkins_Slave (VM) 		-- git,jdk,maven 				*.war
+		
+	Tomcat_Server (VM)			-- jdk,tomcat
+	
+		
+
+	Non-Prod Environments
+	
+		Dev 
+		
+		Build (VM)	--> 
+		
+		QA (VM)		-->  
+		
+		UAT 						==> PROD 
+		
+			
+
+	Deployment ???
+	
+		--> Just a process of copying artifacts from one server to another server 
+							As a devopsadmin user from jenkins master
+		Source Server														Target Server 
+		
+			Jenkins_Slave_Node													Tomcat_Server 
+			
+				target/demo.war														/opt/tomcat/webapps/demo.war
+				
+				Artifacts Library/Repositories
+					Jfrog artifactory
+
+Next ::
+
+	Integrate Tomcat_Server with Jenkins_Master 
+	
+	CI/CD Pipeline 
+	
+	Build Trigger 
+	
+	Email Notifications
+	
+	Ansible!	
 		
 				
 												
