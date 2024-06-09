@@ -438,7 +438,204 @@ Next ::
 	
 	Email Notifications
 	
-	Ansible!	
+
+######################
+Day 6 - 9th June 2024
+######################
+
+	Integrate Tomcat_Server with Jenkins_Master :::
+	
+pipeline {
+    agent { label 'slave1' }
+
+    stages {
+        stage('SCM_Checkout') {
+            steps {
+                echo 'Perform SCM Checkout'
+				git 'https://github.com/Edu-DCP-May25/java-mvn-springbootapp1.git'				
+            }
+        }
+        stage('Application Build') {
+            steps {
+                echo 'Perform Application Build'
+				sh 'mvn clean package'
+            }
+        }
+        stage('Deploy to Tomcat_Server ') {
+            steps {
+                script{
+                    sshPublisher(publishers: [sshPublisherDesc(configName: 'Tomcat-Server', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '.', remoteDirectorySDF: false, removePrefix: 'target/', sourceFiles: 'target/demo-1.0-SNAPSHOT.war')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+                }
+            }			
+        }
+    }
+}
+
+	Jenkins_Master (VM)			-- git,jdk,jenkins
+		Jenkins_Slave (VM) 		-- git,jdk,maven 				*.war
+		
+	Tomcat_Server (VM)			-- jdk,tomcat
+	
+	
+	Install Publish over ssh plugins 
+	
+	Configure tomcat server using Publish over ssh plugins
+
+
+
+sshPublisher(publishers: [sshPublisherDesc(configName: 'Tomcat-Server', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '.', remoteDirectorySDF: false, removePrefix: 'target/', sourceFiles: 'target/demo-1.0-SNAPSHOT.war')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+
+
+
+	Build Trigger :::
+	
+		- Build Periodic :::
+		
+			- It used to schedule the job to run in a specific time using Cron-tab
+			https://crontab.guru/
+			
+			Non-Prod Servers								Prod_Servers 
+				(8AM - 10PM)
+				
+				dev
+				build 
+				qa 
+				uat												prod-servers 
+		
+			Start_Job	- 8AM 
+			
+			Stop_Job	- 10PM
+			
+			
+		- Github Webhook :::	CI/CD
+		
+			- It is used to trigger the jobs whenever there is any commit happened in the remote repo
+			
+			Setup- github webhook to the jenkins job.
+		http://43.204.145.187:8080/github-webhook/
+		
+		http://13.201.136.71:8080/github-webhook/	
+		
+		
+		- Poll SCM :::
+		
+			- It is used to schedule the job to run in a specific time using Cron-tab, only if there is any changes committed to the remote repo.
+			
+			Test Cycles:
+
+				Testing Team -- Start the Testing :
+				
+				8am, 12pm, 3pm
+			
+			
+		CICD Pipeline :
+		
+			scm_checkout 
+			build 
+			unit_test 
+			sonarqube_analysis
+			
+			promote to higher environments
+				Testing will be notified 
+				
+			
+	Email Notifications :::
+	
+		gmail server 
+		
+		
+SMTP Server :
+smtp.gmail.com
+
+SMTP Authentication
+
+SMTP Port :: 465
+
+Login to Gmail :::
+
+Click Manage Account Settings
+
+@Left side panel - select Security 
+
+MFA / Two Way Authentication --> mobile#
+search for app password
+App Password = 16 bytes of App Password. 
+What ? window
+Which Appln - email			
+		
+Post Build Action in the Jenkins Pipeline Jobs ::
+
+	success 
+	failure
+	unstable 		
+		
+pipeline {
+    agent { label 'slave1' }
+
+    stages {
+        stage('SCM_Checkout') {
+            steps {
+                echo 'Perform SCM Checkout'
+				git 'https://github.com/Edu-DCP-May25/java-mvn-springbootapp1.git'				
+            }
+        }
+        stage('Application Build') {
+            steps {
+                echo 'Perform Application Build'
+				sh 'mvn clean package'
+            }
+			 post {
+				success {
+				  sh "echo 'Send mail on success'"
+					mail bcc: 'loksaieta223@gmail.com', body: 'The Job Status', cc: 'loksaieta223@gmail.com', from: '', replyTo: '', subject: 'Jenkins Job Status', to: 'loksaieta223@gmail.com,loksaieta223@gmail.com,loksaieta223@gmail.com'
+				}
+				failure {
+				  sh "echo 'Send mail on failure'"
+					mail bcc: 'loksaieta223@gmail.com', body: 'The Job Status', cc: 'loksaieta223@gmail.com', from: '', replyTo: '', subject: 'Jenkins Job Status', to: 'loksaieta223@gmail.com,loksaieta223@gmail.com,loksaieta223@gmail.com'
+				}
+			  }			
+        }
+        stage('Deploy to Tomcat_Server ') {
+            steps {
+                script{
+                    sshPublisher(publishers: [sshPublisherDesc(configName: 'Tomcat-Server', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '.', remoteDirectorySDF: false, removePrefix: 'target/', sourceFiles: 'target/demo-1.0-SNAPSHOT.war')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+                }
+            }			
+        }
+    }
+}
+		
+
+
+	
+	CICD : Continuous Deployment  
+	
+		SCM_Checkout
+		
+		Build 
+		
+		Deployment to QA Environment
+		
+		Automated QA Testing 
+		
+		Deployment to UAT Environment
+		
+		Automated UAT Testing 		
+
+		Deployment to PROD Environment
+		
+		Automated PROD Testing 		
+
+	CICD : Continuous Delivery  
+	
+		SCM_Checkout
+		
+		Build 
+		
+		Approval Stage 
+		
+		Deployment to Target
+		
 		
 				
 												
