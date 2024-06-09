@@ -1,0 +1,62 @@
+
+######################
+Day 6 - 9th June 2024
+######################
+
+	Containerization using Docker ::::
+	
+		Micro-Service based applications --> 
+		
+	Containerization :::
+	
+		- It is process of packaging the applications along with its' dependencies.
+		
+	Virtual Machine :::
+	
+		- It is called as Hardware Level Virtualization 
+		- It is created using Hypervisor 
+		- VMs are used to execute Operating System 
+		- Even if there is no active task/application, VM will be up and running continuously
+		- VMs consume more space and time to start-up
+	
+	Container :::
+	
+		- It is called as OS Level Virtualization 
+		- It is created using Container Engine 
+		- Containers are used to execute Applications/Task, NOT Operating System 
+		- If there is no active task/application, Containers will immediately goes to EXIT State.
+		- It consume less space and time to start the application.
+		
+		
+	Infra-Structure Perspective :::
+
+		Containers are used to reduce the no. of Virtual Machines.
+		
+			Jenkins_Master Node 	(VM)
+			
+				Jenkins_Slave Node1 (VM)	--> Java Application  - jdk, maven, 
+				Jenkins_Slave Node2 (VM)	--> Python Application
+				Jenkins_Slave Node3 (VM)	--> NodeJS Application
+				Jenkins_Slave Node4 (VM)	--> .Net Application
+				Jenkins_Slave Node5 (VM)	--> Angular Application	
+	
+		Containerization :::
+		
+			Jenkins_Master (VM)
+				Jenkins_Slave (VM)
+					Container_Engine
+						C1		--> Java Application  - jdk, maven, 
+						C2      --> Python Application
+						C3      --> NodeJS Application
+						C4      --> .Net Application
+						C5      --> Angular Application	
+					
+Next :::
+	
+	Application Deployment Perspective :::
+	
+	Install docker container engine 
+	
+	docker cli 
+	
+	
