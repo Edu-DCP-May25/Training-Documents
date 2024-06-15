@@ -59,4 +59,375 @@ Next :::
 	
 	docker cli 
 	
+######################
+Day 7 - 15th June 2024
+######################
+
+Next :::
 	
+	Application Deployment Perspective :::
+	
+	Install docker container engine 
+	
+	docker cli 
+
+
+		Jenkins_Master
+		
+		Jenkins_Slave
+		
+		Tomcat_Server
+		
+	Environment
+	
+		Dev-Environment
+		
+			- IDE, GIT, Unit testing Tools, Tomcat 
+			
+				build, unit test, tomcat
+				
+					Run the Application using Tomcat 
+					
+						jdk11, tomcat_v8.5 ==> successfully Execute the Application
+			
+			- Push the source code to Remote Repository(Github)
+		
+			- Jenkins CICD Pipeline -- 
+			
+				- build 
+				
+				- create artifacts - 	mywebapp.war 
+				
+					Create an Application Image/Package (mywebapp.war, jdk11,tomcat_v8.5) - mywebappimage_v1.0
+					
+					Push the Images to a Container Registry(Dockerhub)
+				
+				- Promoted to :
+				
+				QA		===> mywebappimage_v1.0 
+							As a container we can run the application
+				UAT 
+				
+				PROD 
+
+	
+		Jenkins_Master		
+			Jenkins_Slave
+		QA_Server
+			Container_Engine
+				C1 	mywebappimage_v1.0
+				C2	mywebappimage_v1.2
+				C3  mybankappimage_v1.0
+				
+	Containerization :::
+	
+		- It is process of packaging the applications along with its' dependencies.		
+			
+	Docker ::
+	
+	Terminologies :::
+	
+		- Docker 				# Containerization Tool used to Containerize the Applications
+		
+		- Image 				# It is static file, that defines the properties of Container
+								# Images are Non-Executable
+								# Images are composed of various Layers created using Dockerfile Instructions
+		
+		- Container				# Containers are the Executable units of Images  
+		
+		- Container_Engine 		# Is used to Create Container Images and Containers
+		
+		- Container Registry	# Is used manage/version control the Container Images.
+								# Dockerhub
+								# https://hub.docker.com/
+		
+		- Container Repository	# Is a sub-set of Container Registry 
+		
+						At Enterprise Level we have a Dockerhub Account 
+						
+							Dev_Team1 -> DevTeam1_Repo
+
+	Managed Services :::
+	
+	AWS - ECS,ECR,EKS
+	
+	
+	Source_Code Repo		app code  
+	
+	Artifactory Libraries/Repos	artifacts *.war_1.0
+	
+	Container Repositories	Container Images
+	
+	
+		
+	1. Create Dockerhub Account 
+	
+	2. Install Docker 
+	
+		Install docker engine in Jenkins_Slave Node - ubuntu v22.04 
+		sudo -i
+		
+		apt install docker.io -y
+		
+	3. Working with Docker Cli Commands :
+
+		docker --version
+		
+		docker images 		# used to get the list of Container Images from local 
+		
+		docker ps 			# used to get the list of active/running Containers from local 
+		
+		docker ps -a 		# used to get the list of active and inactive Containers from local 
+		
+		docker pull <image_Name>	# used to pull/download container image from container registry
+		
+		docker run <image_Name> 	# Used to create a Container based on the image
+		
+		Modes of Container Execution :
+		
+			- Foreground Mode / Attached Mode 		# Default 
+			
+				docker run centos sleep 20
+			
+			- Background Mode / Detached Mode 
+			
+				docker run -d centos sleep 20
+			
+			- Interactive Mode 
+			
+				docker run -it centos bash 
+				
+		docker start <container_id>
+		
+		docker exec -it <container_id> bash 		# Login to running container
+		
+		docker stop <container_id>
+		
+		docker rmi	<Image_Name>		# Used to remove the Image 
+		
+		docker rm 	<Container_ID>		# Used to remove the Container
+		
+		
+	Port Mapping/Binding :::
+
+		- Is used to Expose the Applications running inside the container to out side world
+	
+		-p <host_port>:<container_port>
+		
+		docker run -it tomcat bash		
+
+		docker run -it --name=signin_service -p 8086:8080 tomcat:8.0
+		
+	
+	WebAppln -- running inside a container --> Generated some data
+	
+	Stateless Application
+		- It will never have any state of execution 
+	
+	Stateful Application
+		- It will always have a trace of execution -logs/report/artifacts
+	
+	
+		3-tier Application Architecture
+		
+		Sign-In Server 	- Containerized ::
+		
+			- Front-End Layer 				C1 
+			
+			- Application Layer 			C2 
+			
+			- Backend - Database Layer 		C3 
+			
+	Persistant Volumes:
+		- Even if you lose the container, the container data should be preserved
+		
+	Docker Volume: 	
+	
+	
+		docker volume list
+
+	How to Create User defined Images and publish it to Container Registry ::::
+	
+	
+	Create New Images :
+	
+		docker commit
+
+			- It is used to create a container Image based on the existing Container reference.
+			
+			docker commit <Existing_Container_ID> <dockerhub_repo_Name>/<New_image_Name>:v1.0
+		
+	
+	Publish New Image to Container Registry from local machine
+	
+		1. Login to dockerhub account thru web browser
+		
+		2. Create access token
+		
+		docker login  -u <userId>
+		password :
+		
+		
+		
+		
+		docker build 
+
+			- It is used to create a container Image from the scratch based on the Dockerfile definition.
+			
+			docker build -t loksaieta/dcpmay25img2:v2.0 .			# '.' Denote the Docker file reference
+			
+	Dockerfile Compose of Instructions ::
+			
+	Dockerfile Instructions :::		
+		
+		FROM 	::: Is used to define the base image(pull from docker registry)
+
+		RUN 	::: Is used to run/execute package managers to manage the packages in container
+
+		COPY	::: Is used to Copy the files from Host Machine to Container path
+		
+		ADD		::: Is used to Copy the files from Host Machine to Container path
+					It is also used to copy the files from Url.
+		
+		CP		::: Is used to copy the files within the containers
+
+		WORKDIR ::: Is used to specify the current working dir
+
+		EXPOSE  ::: Is used to expose the container port
+		
+		ENV 	::: Is used to set envi. variables within the image
+
+		VOLUME	::: Is used to define the volume to be used in image
+		
+		CMD	::: Is used to execute any command when run the container
+				/bin/bash  ==> Can be replaced at runtime.
+
+		ENTRYPOINT	::: Is used to execute any command when run the container
+				/sleep 30 ==> Cannot be replaced at runtime	
+
+  186  docker --version
+  187  docker images
+  188  docker ps
+  189  docker ps -a
+  190  docker pull centos
+  191  docker imags
+  192  docker images
+  193  clear
+  194  docker images
+  195  docker ps
+  196  docker ps -a
+  197  docker run centos
+  198  docker ps
+  199  docker ps -a
+  200  docker run centos sleep 20
+  201  clear
+  202  docker run centos sleep 10
+  203  asdf
+  204  clear
+  205  docker run -d centos sleep 20
+  206  docker ps
+  207  docker run -it centos bash
+  208  clear
+  209  docker ps -a
+  210  docker ps
+  211  docker start 66631f8efcea
+  212  docker ps
+  213  docker ps -a
+  214  docker start e2a9b87a6b2f
+  215  docker ps
+  216  docker start 91de18e020d1
+  217  docker ps
+  218  docker exec -it 91de18e020d1 bash
+  219  docker ps
+  220  docker stop 91de18e020d1
+  221  docker ps
+  222  docker ps -a
+  223  docker images
+  224  docker rmi testecr
+  225  docker images
+  226  docker rmi centos
+  227  docker ps -a
+  228  docker rm 66631f8efcea
+  229  celar
+  230  clear
+  231  docker images
+  232  docker run -it tomcat bash
+  233  clear
+  234  docker run tomcat:8.0
+  235  clear
+  236  docker run -it -p 8083:8080 tomcat:8.0
+  237  clear
+  238  docker volume list
+  239  docker volume create dcpmay25-vol1
+  240  docker volume list
+  241  docker volume inspect dcpmay25-vol1
+  242  cd /var/lib/docker/
+  243  ls
+  244  cd image/
+  245  ls
+  246  cd ..
+  247  cd volumes/
+  248  ls
+  249  cd dcpmay25-vol1
+  250  ls
+  251  cd _data/
+  252  ls
+  253  pwd
+  254  cd ~
+  255  docker run -it centos bash
+  256  docker run -it --mount source=dcpmay25-vol1,destination=/dcpmay25-vol1 centos bash
+  257  docker ps
+  258  cd /var/lib/docker/volumes/dcpmay25-vol1/_data
+  259  ls
+  260  cat containerfile
+  261  cat containerfile1.txt
+  262  ls
+  263  pwd
+  264  echo "rec1" >> inputhostfile1.txt
+  265  ls
+  266  cd ~
+  267  docker run -it --mount source=dcpmay25-vol1,destination=/dcpmay25-vol1 centos bash
+  268  clear
+  269  docker images
+  270  docker run -it debian bash
+  271  docker ps
+  272  docker ps -a
+  273  docker start 926d588e320f
+  274  docker exec -it 926d588e320f bash
+  275  docker images
+  276  clear
+  277  docker ps -a
+  278  docker images
+  279  docker commit 926d588e320f loksaieta/dcpmay25img1
+  280  docker images
+  281  docker run -it loksaieta/dcpmay25img1 bash
+  282  clear
+  283  docker login  -u loksaieta
+  284  docker images
+  285  docker push loksaieta/dcpmay25img1
+  286  docker ps -a
+  287  mkdir dcpmay25
+  288  cd dcpmay25/
+  289  vi Dockerfile
+  290  ca Dockerfile
+  291  cat Dockerfile
+  292  docker build -t loksaieta/dcpmay25img2:v2.0 .
+  293  docker images
+  294  docker run -it loksaieta/dcpmay25img2:v2.0 bash
+  295  cat Dockerfile
+  296  docker ps
+  297  docker ps -a
+  298  clear
+  299  docker ps -a
+  300  cd ~
+  301  history
+
+
+Next : 
+
+	Container Orchestration Tools ;
+	
+		Overview of Docker Compose 
+		Overview of Docker Swarm 
+		
+		Kubernetes	
