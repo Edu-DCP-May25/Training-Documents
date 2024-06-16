@@ -1,0 +1,246 @@
+
+######################
+Day 8 - 16th June 2024
+######################
+
+	Container Orchestration Tools ;
+	
+		Overview of Docker Compose 
+		Overview of Docker Swarm 
+		
+		Kubernetes
+		
+		
+	Container Orchestration ??? 
+	
+
+
+		3-tier Application Architecture
+		
+		Sign-In Service 	- Containerized ::
+		
+			- Front-End Layer 				C1,C1.1,c1.2
+			
+			- Application Layer 			C2,C2.1,c2.2
+			
+			- Backend - Database Layer 		C3,C3.1,c3.2
+
+
+		Create replicas of Containers to ensure high availability
+
+		Overview of Docker Compose :::
+		
+			- It is used run multiple containers as Single Service 
+			- docker-compose.yaml - define all the containers to be executed as a service
+			- All Containers will be started / stopped at the same time.
+			
+		Install docker-compose.io 
+			
+		Docker Swarm ::
+		
+			It is used to orchestrate Docker Container only
+			
+			It is used to create replicas of Container, It helps to ensure high availability of Container 
+			
+			Scale-up 
+			
+			Scale-Down 
+			
+			Not possible to Auto-Scale 
+			
+			Not possible to perform Load Balancing 
+			
+		Application :
+		
+			E_Commerce Portal ::
+			
+			
+			100 Replicas of containers --> 10000 Users --> Expected Traffic
+
+			10000 Users -- 100 Replicas
+			
+			50000 Users ??
+			
+				Auto Scaling --> Scale-up / Scale-Down
+
+
+		Kubernetes ::::
+		
+			--> It is Open-Source Container Orchestration Tool
+			
+			--> Used to Ensure High-Availability of Containers/Pods
+			
+			--> Create the replicas of Container/Pods to ensure high availability.
+
+			--> Perform Auto-Scaling 
+			
+			--> Load-Balancing
+			
+			--> Using Kubernetes and DevOps Process, we can achieve Continous Deployment
+			
+		
+		
+		Managed Services::::
+		
+			AWS 	---> ECS/ECR/EKS
+			
+			Azure 	---> ACS/ACR/AKS
+			
+			GCP 	---> GCE/GCR/GKE
+			
+			
+		Kubernetes Architecture :::
+		
+			- Components of Kubernetes Architecture
+		
+		Kubernetes Terminologies :::
+		
+		Installation and Configuration of Kubernetes :::
+		
+		Kubernetes Concepts :::
+		
+			Pods 
+			Controller Objects 
+			Volumes 
+			Services 
+			Namespaces 
+		
+		
+			
+		Kubernetes Architecture :::
+		
+			Client-Server ::
+			
+			Kubernetes_Master (VM)			--> Used to create and schedule the pods for deployment 
+				Kubernetes_WorkerNode1 (VM)	--> Used for actual deployment 
+				Kubernetes_WorkerNode2 (VM)
+				Kubernetes_WorkerNode3 (VM)
+				Kubernetes_WorkerNode4 (VM)
+				Kubernetes_WorkerNode5 (VM)
+		
+			- Components of Kubernetes Architecture	
+				- API Server 
+				- ETCD 
+				- Scheduler
+				- Controller Manager 
+				
+				- Kubelet 
+				- Kube-Proxy 
+				- CRI - Container-D
+
+		Kubernetes Terminologies :::
+		
+			- Kubernetes Cluster		# It is a collection of Worker_Nodes 
+			
+			- kubectl					# Is a Command Line Utility used to interact with Kubernetes Master
+
+			- kubeadm					# Is a Command Line Utility used to Configure Kubernetes Cluster
+			
+			- Image 					# It is static file, that defines the properties of Container
+										# Images are Non-Executable
+										# Images are composed of various Layers created using Dockerfile Instructions
+			
+			- Container					# Containers are the Executable units of Images  
+			
+			- Container_Engine 			# Is used to Create Container Images and Containers
+			
+			- Container Registry		# Is used manage/version control the Container Images.
+										# Dockerhub
+										# https://hub.docker.com/
+			
+			- Container Repository		# Is a sub-set of Container Registry 
+					
+			- Pod 						# Is a smallest unit of task schedule in Kubernetes
+										# Used to Run Container 
+			
+			
+			- Kubernetes Cluster		# It is a collection of Worker_Nodes 
+
+
+
+
+			Kubernetes_Master (VM)	
+					Kubernetes_WorkerNode1 (VM)
+					Kubernetes_WorkerNode2 (VM)
+					Kubernetes_WorkerNode3 (VM)
+					
+					
+			Kubernetes_Master (VM)	
+				Kubernetes_Cluster1
+					Kubernetes_WorkerNode1 (VM)
+					Kubernetes_WorkerNode2 (VM)
+					Kubernetes_WorkerNode3 (VM)
+				Kubernetes_Cluster2
+					Kubernetes_WorkerNode1 (VM)
+					Kubernetes_WorkerNode2 (VM)
+					Kubernetes_WorkerNode3 (VM)
+				Kubernetes_Cluster3
+					Kubernetes_WorkerNode1 (VM)
+					Kubernetes_WorkerNode2 (VM)
+					Kubernetes_WorkerNode3 (VM)
+			
+			Kubernetes_Master 
+				Kubernetes_Master1 (VM)							AWS
+					Kubernetes_Cluster1
+						Kubernetes_WorkerNode1 (VM)
+						Kubernetes_WorkerNode2 (VM)
+						Kubernetes_WorkerNode3 (VM)
+					Kubernetes_Cluster2
+						Kubernetes_WorkerNode1 (VM)
+						Kubernetes_WorkerNode2 (VM)
+						Kubernetes_WorkerNode3 (VM)
+					Kubernetes_Cluster3
+						Kubernetes_WorkerNode1 (VM)
+						Kubernetes_WorkerNode2 (VM)
+						Kubernetes_WorkerNode3 (VM)
+				Kubernetes_Master2 (VM)						 	Azure
+					Kubernetes_Cluster1
+						Kubernetes_WorkerNode1 (VM)
+						Kubernetes_WorkerNode2 (VM)
+						Kubernetes_WorkerNode3 (VM)
+					Kubernetes_Cluster2
+						Kubernetes_WorkerNode1 (VM)
+						Kubernetes_WorkerNode2 (VM)
+						Kubernetes_WorkerNode3 (VM)
+					Kubernetes_Cluster3
+						Kubernetes_WorkerNode1 (VM)
+						Kubernetes_WorkerNode2 (VM)
+						Kubernetes_WorkerNode3 (VM)
+
+
+		
+		Docker - run a container! replicas of containers needed to ensure high availability.
+
+		Installation and Configuration of Kubernetes :::
+
+
+		Kubernetes Concepts :::
+		
+		
+			Pods :::
+			
+			Working with Kubectl to create kubernetes Objects
+			
+			Create Manifest_file  ==> *.yaml
+			
+			
+		Pods
+
+Next ::::
+
+		Controller Objects :
+			- Replication Controller 
+			- Replicaset 
+			- Deployment Objects
+			- Daemonset 
+		Volumes :
+			- Hostpath volume
+			- ConfigMap
+			- Secret
+			- Persistant Volume
+			- Persistant Volume Claim
+		Services 
+			- NodePort Service 
+			- ClusterIP Service 
+			- Load Balancer Service 
+		Namespaces
