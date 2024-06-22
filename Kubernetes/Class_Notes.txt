@@ -244,3 +244,235 @@ Next ::::
 			- ClusterIP Service 
 			- Load Balancer Service 
 		Namespaces
+
+#######################
+Day 9 - 22nd June 2024
+#######################		
+					
+		Controller Objects :
+			- Replication Controller 
+			- Replicaset 
+			- Deployment Objects
+			- Daemonset 
+		Volumes :
+			- Hostpath volume
+			- ConfigMap
+			- Secret
+			- Persistant Volume
+			- Persistant Volume Claim
+		Services 
+			- NodePort Service 
+			- ClusterIP Service 
+			- Load Balancer Service 
+		Namespaces
+
+
+
+
+		Kubernetes ::::
+		
+			--> It is Open-Source Container Orchestration Tool
+			
+			--> Used to Ensure High-Availability of Containers/Pods
+			
+			--> Create the replicas of Container/Pods to ensure high availability.
+
+			--> Perform Auto-Scaling 
+			
+			--> Load-Balancing
+			
+			--> Using Kubernetes and DevOps Process, we can achieve Continous Deployment
+
+
+			Kubernetes_Master (VM)	
+				Kubernetes_WorkerNode1 (VM) -- Deployment 
+				Kubernetes_WorkerNode2 (VM) -- Deployment
+
+			Pod --> one instance of pod was deployed in workernode1 
+			
+			
+			Create Replicas of Pods and Deploy it in the available worker Nodes
+
+				- 2 copies of pod 
+
+		Controller Objects :
+			- Replication Controller 
+			- Replicaset 
+			- Deployment Objects
+			- Daemonset 
+
+
+			Replication Controller & Replicaset ::
+			
+				- Both are used to run specific number of pods
+				- Replication Controller uses the Equality Based Operator 
+					envi = dev 
+					
+				- Replicaset uses the Set based operator
+					dev-envi = {dev1,dev2,dev3}
+					test-envi = {qa1,qa2,qa3}
+					
+				- Replicasets can be automatically created using Deployment Controller Object
+				
+				- Latest verion of kubernetes supports Replicaset
+				
+			- Deployment Object	
+
+				- It Creates replicas of Pods using Replicaset 
+				- Scale-up/Down the pod instances 
+				- Upgrade / Roll-back the Changes without impacting the Applications
+				- Application Upgrade/Downgrade can be done without any downtime.
+				- It used Rolling-Update Deployment Strategy by default to achieve Zero Downtime.
+
+				Deployment
+			
+					pod1	mywebappimg:v1.0		===>		mywebappimg:v2.0
+					pod2	mywebappimg:v1.0		===>		mywebappimg:v2.0
+					pod3	mywebappimg:v1.0		===>		mywebappimg:v2.0
+				
+				
+					- Deployment 
+					
+					- Replicaset
+					
+					- Pod Instances 
+
+				Pod -> Atomic unit of schedule
+				
+					--> a smallest Task that you run in kubernetes is what a pod.
+					
+					--> 1 more than one container 
+					
+					
+
+				VM --> jenkins/tomcat - Application
+											--> Micro-Services --> Pod 
+
+				
+			- Daemonset :::
+			
+				- Is used to run a copy of pod in all the available Nodes in the cluster 
+				
+					-> Monitoring the Nodes 
+					-> Logger / Reporting Tools on the nodes 
+					
+		Volumes :
+			- Hostpath volume
+			- ConfigMap
+			- Secret
+			- Persistant Volume
+			- Persistant Volume Claim
+			
+			
+		
+		ConfigMap & Secret Volume :::
+		
+			ConfigMap Volume ==> Used to maintain any generic data  
+			
+			Secret Volume 	 ==> Used to maintain sensitive data
+							 ==> Here the data will be encrypted, and it cannot be exposed out the pod.
+		
+			
+		Hostpath volume	:::
+		
+			===> Volume/Dir created in the host machine 
+			
+			
+		Persistant Volume
+		
+		Persistant Volume Claim		
+		
+			- Static / Dynamic -->
+
+		Services 
+			- NodePort Service 				# Used to Expose the pods to internet 
+											# Created at the service level. i.e., 1 micro-service can have one node-port
+											
+			- Load Balancer Service 		# Created at the Application Level 
+											# It is created on top of the Node-Port Service 
+											# Using the Load Balancer IP Address, we can access the application 
+
+
+			Routing Mechanism :::
+
+				Host Based Routing 
+
+					www.google.com 						Load Balancer IP 
+						www.translate.google.com 			Host Based Routing 
+						www.drive.google.com 
+						
+					
+						
+			
+				Path Based Routing 
+				
+					www.gmail.com 
+						www.gmail.com/inbox
+						www.gmail.com/sent 
+				
+				Simple Routing 
+
+				
+				
+				
+			- ClusterIP Service 			# Used establish communication between the pods within the cluster
+											# Default Service 
+
+
+			Package Manages :::
+			
+				- apt / yum --> 
+				
+			Kubernetes_Master
+					Kubernetes_WorkerNode1,2,3,4,5,6,7,....,100
+					
+			HELM Chart :
+				- Helm is package Manager for Kubernetes_Cluster.
+				
+				Prometheus
+				
+				Kubernetes Dashboards 
+				
+				Final Demo:
+				CICD Pipeline --> Create Kubernetes Dashboards using Helm and monitor the pods and services 
+			
+	
+		Namespaces
+		
+			- Are the Logical Partition of the Cluster
+				- based on environment/ Teams
+				
+			Deployment = Blue-Green Deployment	
+					ACTIVE 				== LIVE - discard this 
+					
+					PASSIVE Server 		== New Feature Rel ---> Active LIVE 
+					
+			In Kubernetes This can be done using Namespaces.
+			
+			LIVE 
+			
+			Non-Prod 											DEV/UA/UAT (Namespace)
+			Kubernetes_Cluster
+					Kubernetes_WorkerNode1,2,3,4,5
+			
+			
+			Prod 												Active_App (Namespace) Prod-Test(Namespace)
+			Kubernetes_Cluster
+					Kubernetes_WorkerNode1,2,3,4,5
+					
+					
+Next :::					
+					
+IAC Tools :::
+
+		Ansible - Fundamentals of Ansible
+		
+		Terraform 
+		
+		
+		
+		
+		
+Prometheus/Grafana
+
+Demo - CICD 
