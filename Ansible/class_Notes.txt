@@ -1,0 +1,197 @@
+
+
+#######################
+Day 10 - 23rd June 2024
+#######################	
+
+IAC Tools :::
+
+		Ansible - Fundamentals of Ansible
+		
+		Terraform 
+
+
+		IAC Tool ::
+		
+			Infra-Structure Management Team 
+			
+				- Responsible for Server Provisioning and Configurations
+				
+				Test Environments 
+				
+				20 
+				
+				25 Members - AD Team 
+				
+				workstn - Tools - 
+				
+				In-House Tools 
+				
+				Shell Scripts to create/configure the servers 
+				
+				IAC Tools ::
+					- Declarative Scripts - *.yaml / *.json / *.hcl / *.tf
+					
+					
+				Provisioning/Creating 	===> Terraform/ARM/Cloudformation 
+				
+				Configuration Management Tools 		===> Ansible/Chef/Puppet.....
+				
+				
+		Ansible :
+
+			Fundamentals of Ansible :
+
+			- Is a IAC Tool used to configure infra-structure.
+			- It uses *.yaml file format for scripting.
+			
+			
+			Why Ansible ?
+			Ansible Architecture
+			Ansible Architecture Components 
+			
+			Working with Ansible :
+				- Using Ansible Adhoc Commands 
+				- Using Ansible Playbooks
+				- Misc. Ansible Concepts 
+				
+		
+			Install and Configure Ansible !
+			
+			
+			CICD Pipeline ::
+			
+			Stages :::
+			
+			SCM_Checkout	--> Build 	---> Deployment_QA_Server --> QA_Testing --> Deployment_UAT_Server --> UAT_Testing - Prod
+			
+			
+			SCM_Checkout	---> Build 	---> Create QA_Server(Terraform) --> Configure_QA_Server(Ansible) --> Deployment_QA_Server 
+			
+																													|
+																													|
+																													|
+																												QA_Testing
+																													|
+																													|
+																													|
+																												Notify the Users
+																													|
+																													|
+																													|
+																												Delete the QA_Server 
+																												
+			Java_Jenkins_Slave1	--> Configuration (Ansible)
+					- Installed git 
+					- Installed JDK
+					- Installed Maven 
+
+			Ansible Architecture Components  :::
+			
+				- Ansible Controller	--> Ansible is installed in this Machine 
+
+				- Ansible Target 		--> Ansible Nodes/Clients 
+
+				- Inventory File		--> Flat file that defines the Ansible Nodes Details 
+												- Host_name 
+												- User_Name
+												- Credentials 
+												- Connection Protocol
+												
+				- Modules 				--> Ansible Scripts written in python 
+											These Modules are used to perform desired tasks on the target nodes
+											- Execute Shell Script 
+											- Install Packages
+											
+				- Ansible Config file	--> Define the default properties of Ansible 
+				
+				
+			Working with Ansible ::
+			
+				Ansible Adhoc Commands 
+						--> Standalone Command to perform any module in the target node. 
+						--> Cannot be reusable
+						
+							apt install git -y 					
+
+				
+				
+				Ansible Playbooks
+						--> Used to execute some series of Modules in the target node.
+						--> Playbooks can be reusable.
+						--> Written using *.yaml Scripts 
+						
+							QA_Server :
+							
+								- jdk 
+								- setup environment variable 
+								- install tomcat:8.5
+								- Start Tomcat Server 							
+
+							QA_Server :
+									
+										- jdk 
+										- setup environment variable 
+										- install tomcat:9
+										- Start Tomcat Server 	
+
+								
+				Ansible Roles 
+						--> It is used to organise, reuse and share Ansible Components like playbooks, task, Variables....
+				
+				
+				
+Inventory_file Format:
+
+[Build_Servers]
+x.x.x.x	user_name ssh_Cred
+y.y.y.y user_name ssh_Cred 
+
+[Test_Servers]
+z.z.z.z user_name win_cred
+
+		Install & Configuration
+				
+			Authentication Methods :::
+				
+				-> Key/Token/Password/Passwordless Authentication
+				
+				
+				
+#######################
+Day 11 - 29th June 2024
+#######################				
+				
+		Install & Configuration Ansible Controller and Nodes
+		
+		Working with Ansible :
+		
+		- Prepare Ansible Inventory File :
+		
+			- To identify the target nodes 
+				
+		- Use Ansible Adhoc Commands / Playbooks to manage the target nodes 
+		
+		
+		Playbooks ::
+		
+			-- reusable 
+			
+			Variables ::: 
+			
+			Create Playbooks with variables and use the Variables in Modules.
+			
+
+Next ::
+
+	Fundamentals of Terraform
+	
+	Fundamentals of Prometheus & Grafana
+		
+	CICD Pipeline Demo 
+		
+		
+		
+		
+		
+		
