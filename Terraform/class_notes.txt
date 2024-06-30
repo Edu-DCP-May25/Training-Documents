@@ -1,0 +1,146 @@
+#######################
+Day 12 - 30th June 2024
+#######################				
+			
+	Fundamentals of Terraform
+	
+	Fundamentals of Prometheus & Grafana
+		
+	CICD Pipeline Demo 
+				
+		
+		
+		Terraform :::
+		
+			IAC Tool 
+		
+				IAC Tools ::
+					- Declarative Scripts - *.yaml / *.json / *.hcl / *.tf
+					
+					
+				Provisioning/Creating 				===> Terraform/ARM/Cloudformation 
+				
+				Configuration Management Tools 		===> Ansible/Chef/Puppet.....
+
+			Terraform Architecture
+			
+			Terraform Working Model 
+			
+			
+			Test the app in aws & azure 
+			
+			Terraform Working Model :::
+			
+				- Identify the scope the target environment			Eg.: AWS - EC2 Instance(VM) / Azure - Virtual Machine  
+				- Write the Terraform Script based on the target environment
+				- Perform Terraform Init - Used to download the terraform provider
+				- Perform Terraform Plan - Used to preview the Terraform Script
+				- Perform Terraform Apply - Used to Implement the changes in the target environment
+				
+				
+			Working with Terraform
+			
+				- Understand Terraform Provider 
+				
+				
+				- Install Terraform
+					
+					
+				- Write the Terraform Scripts & Execute
+			
+
+				- Install Terraform
+				
+					- In Local Windows Machine 	
+							# https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
+							# https://developer.hashicorp.com/terraform/install
+									- Select WinAMD64
+									- Download zipfile 
+									- Extract
+									- Create Environment Variable 
+
+				- Understand Terraform Provider 
+				
+					Create AWS Access Key and Secret Key :::
+					
+						Access Key 
+						
+						Secret Key 
+				
+				
+				- Create terraform Scripts
+					
+					- Visual Studio Code - IDE 		# https://code.visualstudio.com/download
+					
+						- Install Hashicorp Extension for Terraform in VS Code.
+						
+					- Create Terraform Project in VS Code 
+					- Create Terraform Script file
+					
+				Terraform is used to ::
+				
+					- Create/Add Resource 		====>		+
+					
+					- Change/Modify	Resource	====>		~
+					
+					- Delete/Destroy Resource	====>		-
+			
+				terraform.tfstate file	# Used to maintain the current state of the real infra-structure
+				
+				
+		
+	CICD Pipeline ::	
+	
+		scm_checkout 	-->		Application_Build		-->		Deploy to QA_Server 
+		
+	
+	Scenario 1 :
+
+	Pipeline1 :
+		scm_checkout	--> 	Create_New_QA_Server(Terraform)		--> 	Configure New_QA_Server(Ansible)
+		
+	Pipeline2 :
+		scm_checkout 	-->		Application_Build					-->		Deploy to New_QA_Server 	
+		
+		
+	
+	GitOps :::
+	
+	Pipeline 1 :;
+	
+	Stages:
+	
+		SCM_Checkout
+		
+		Application_Build 
+		
+		Create_New_QA_Server(Terraform)
+		
+		Configure New_QA_Server(Ansible)
+		
+		Deploy to New_QA_Server 
+		
+		Perform QA_Testing 
+		
+		Notify the Developer
+		
+	Pipeline 2 :;
+	
+	Stages:			GITHUB Webhook!
+	
+		SCM_Checkout
+		
+		Application_Build 
+		
+		Create_New_QA_Server(Terraform)
+		
+		Configure New_QA_Server(Ansible)
+		
+		Deploy to New_QA_Server 
+		
+		Perform QA_Testing 
+		
+		Notify the Developer
+
+		Destroy New_QA_Server
+		
