@@ -1,0 +1,67 @@
+		
+#######################
+Day 12 - 30th June 2024
+#######################		
+	Fundamentals of Prometheus & Grafana 
+	
+	Continuous Monitoring :::
+	
+		E_Commerce Portal 
+		
+		Online Ticket Booking System 
+		
+		
+		Infra-Structure Monitoring :::
+		
+			Monitoring the Production Environments/Servers 
+				Appln / DBase / 
+				
+			CPU Utilization  	==> 75% Limit --> Alert / Webhook /  100% 
+			
+			Memory Utilization 	==> 80% Limit --> delete unwanted files / Add More Volumes 
+			
+		Production Monitoring Team / Production Support Team 
+			
+				24/7 --> 
+			
+		DevOps Profile ==> git/jenkins/docker/kubernetes/ansible/terraform - highlight on ur profile 
+			monitoring/support 
+			
+		
+		Monitoring Tools :::
+		
+			Infra-Structure Monitoring
+				-> Prometheus/Grafana/Nagios/Splunk/Dynatrace
+				
+			Application Monitoring
+				--> DataDog/AppDynamics  QA/ Performance Testing UAT
+				
+				
+		Prometheus/Grafana
+		
+			- Prometheus 	==> Is a Infra-Structure Monitoring Tool 
+			
+			- Grafana		==>	Is a Visualization Tool 
+			
+		Working with Prometheus/Grafana:
+		
+			Architecture of Monitoring 
+			
+			Components 			
+				
+				Prometheus Server 
+				Target Nodes 
+				Node Exporter Agent 
+				TimeSeries Database 
+				
+				Grafana 
+			
+			Installation of Prometheus/Grafana
+			
+			
+			jenkins_Slave ==> Build Application 
+				src_code,*.war,docker images		==> Space 
+				1000s of services in the slave_node 
+				
+				Monitoring Dashboard to Monitor space utilization of Jenkins_Slave Node
+				
