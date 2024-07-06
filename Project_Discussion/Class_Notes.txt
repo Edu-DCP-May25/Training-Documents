@@ -1,0 +1,121 @@
+#######################
+Day 13 - 6th July 2024
+#######################			
+		
+	CICD Pipeline :::	
+	
+		DevOps :::
+			
+			Automate the CI/CD	- Increase the frequency Build and Release Cycles
+		
+		Development Perspective ::
+		
+			Build Cycles	
+				- What type of Application ?
+				- What are the Build Tools ?
+				- How to Setup the Build Tools ?
+				
+			
+			Test Cycles 
+				- What type of Testing ?
+				- What are the Testing Build Tools ?
+				- How to Setup the Testing Tools ?
+				
+			Release Cycles 
+				- What type of Deployment Strategy? 
+				- What are the Testing Deployment Tools ?
+				- How to Setup the Deployment Tools ?		
+		
+		DevOps Perspective ::
+		
+			Automate the CI/CD ::::
+			
+			
+			How to Implement DevOps CI/CD Automation ???
+			
+				- Detailed DevOps Assessment!
+
+				DevOps Team: 
+					Infra-Structure Management Team - Provision/Configure Infra-Structure
+					Application Development Team
+					Testing Team 
+					Release Management Team 
+					Production Support Team 
+					Production Monitoring Team 
+					Security Administration Team 
+					
+				- DevOps Assessment Report ::
+				
+					- Recommendations
+					
+						Tools 	--> Open-Source DevOps Tools / Managed Services - AWS/Azure DevOps Services
+						Process --> DevOps Process for Automation 
+									- Identify the scope for automation
+						
+					Tools :
+						Open-Source DevOps Tools : git/jenkins/docker/kubernetes/ansible/terraform
+						
+			Phases :
+
+				- Create Infra-Structure(Servers/VMs) for DevOps Tools and Resources
+				- Tools to Automate CI/CD  
+				- Create CI/CD Pipeline Templates 
+				- Onboard Applications 
+				
+				
+			1. Create Infra-Structure(Servers/VMs) for DevOps Tools and Resources :
+			
+				Jenkins_Master	(VM)	- Used to Create Jenkins CICD Pipeline and schedule to run on Slave_Nodes & Control the Deployment Servers
+					Build_Server (VM)	- Used to Java Application Build - Creates *.war/*.jar, Docker Build - Create Application Images 
+				Kubernetes_Master (VM)	- Target Environments for Deployments - QA/UAT/PROD
+					Kubernetes_WorkerNode1 (VM)
+					Kubernetes_WorkerNode2 (VM)
+					
+			2. Tools to Automate CI/CD 
+					
+				Jenkins_Master	(VM)			- git,jdk,jenkins 
+					Build_Server (VM)			- git,jdk,maven,docker
+					
+				Kubernetes_Master (VM)			- Kubernetes Component 
+			    	Kubernetes_WorkerNode1 (VM)
+					Kubernetes_WorkerNode2 (VM)		
+					
+			3. Integration of Jenkins_Master Node with the Build_Server and Kubernetes_Master	
+				
+				SSH Protocol :
+					HostName Entities 
+					User Name 
+					Credential - Key based Authentication
+					
+			4. Create CICD Pipelines :
+			
+				CICD Pipeline composed of various stages ::: 
+									
+						- Create Source Code 
+						- Save/Commit the Source Code to a Source Code Repository(github)
+						
+						Automate using DevOps Tool :
+						
+						- Build the Code 
+									--> Is a process of compiling the code and create artifacts(Binaries - *.war/*.jar/*.dll/*.exec)
+						- Unit Testing 
+						- Promote the changes to Test Environments
+						- Notify the Testing Team thru Emails				
+			
+				CICD Pipeline Stages :
+				
+					- SCM_Checkout the source code to Build Server				# Source Code Repository 
+					- Application Build 										# Artifacts(Binaries - *.war/*.jar/*.dll/*.exec) 
+						Automated Unit Testing 
+						Code Quality Check 
+					- Docker Application Image Build							# Application Image 
+					- Login to Container Registry(Docker_Hub)
+					- Publish the latest version of Application Image to Container Registry(Docker_Hub)
+					- Deploy to Kubernetes Cluster 
+		
+			5. Onboard Applications to CICD Process 
+		
+		
+				
+				
+				
